@@ -26,10 +26,11 @@ public class VideoProvider {
             Log.e("video", "cursor.moveToNext()" + cursor.moveToNext());
             while (cursor.moveToNext()) {
                 int id = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Video.Media._ID));
+                Log.e("video", "id" + id);
                 String title = cursor
                         .getString(cursor
                                 .getColumnIndexOrThrow(MediaStore.Video.Media.TITLE));
-                Log.e("video", "title" + title);
+
                 String album = cursor
                         .getString(cursor
                                 .getColumnIndexOrThrow(MediaStore.Video.Media.ALBUM));
@@ -45,6 +46,7 @@ public class VideoProvider {
                 String path = cursor
                         .getString(cursor
                                 .getColumnIndexOrThrow(MediaStore.Video.Media.DATA));
+                Log.e("video", "path" + path);
                 long duration = cursor
                         .getInt(cursor
                                 .getColumnIndexOrThrow(MediaStore.Video.Media.DURATION));

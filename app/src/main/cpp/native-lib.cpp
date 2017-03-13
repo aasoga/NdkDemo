@@ -1,6 +1,19 @@
 #include <jni.h>
 #include <string>
-extern "C"{
+
+JNIEXPORT jboolean JNICALL
+Java_com_example_v_1yanligang_ndkdemo1_AudioPlayer_createStreamingMediaPlayer(JNIEnv *env,
+                                                                              jclass type,
+                                                                              jobject assetMg,
+                                                                              jstring fileName_) {
+    const char *fileName = env->GetStringUTFChars(fileName_, 0);
+
+    // TODO
+
+    env->ReleaseStringUTFChars(fileName_, fileName);
+}
+
+extern "C" {
 #include "libavcodec/avcodec.h"
 #include "libavformat/avformat.h"
 #include "libswscale/swscale.h"

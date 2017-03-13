@@ -10,7 +10,7 @@ cmake_minimum_required(VERSION 3.4.1)
 # Gradle automatically packages shared libraries with your APK.
 
 add_library( # Sets the name of the library.
-             VideoPlayer
+             Player
 
              # Sets the library as a shared library.
              SHARED
@@ -18,7 +18,8 @@ add_library( # Sets the name of the library.
              # Provides a relative path to your source file(s).
              # Associated headers in the same location as their source
              # file are automatically included.
-             src/main/cpp/VideoPlayer.c)
+             src/main/cpp/VideoPlayer.c
+             src/main/cpp/AudioPlayer1.cpp)
 
 #Add other prebuilt libraries
  add_library(avcodec-lib  SHARED IMPORTED )
@@ -66,7 +67,7 @@ find_library( # Sets the name of the path variable.
 # build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries( # Specifies the target library.
-                       VideoPlayer
+                       Player
                        android
                        avcodec-lib
                        avdevice-lib
@@ -75,6 +76,8 @@ target_link_libraries( # Specifies the target library.
                        avutil-lib
                        swresample-lib
                        swscale-lib
+                       OpenSLES
+                       atomic
 
                        # Links the target library to the log library
                        # included in the NDK.

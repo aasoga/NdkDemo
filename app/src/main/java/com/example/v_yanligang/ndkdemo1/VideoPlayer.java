@@ -6,7 +6,7 @@ package com.example.v_yanligang.ndkdemo1;
 public class VideoPlayer {
 
     static {
-        System.loadLibrary("VideoPlayer");
+        System.loadLibrary("Player");
     }
 
     public static native int play(Object surface, String path);

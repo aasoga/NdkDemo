@@ -18,23 +18,16 @@ public class PlayVideoActivity extends Activity implements SurfaceHolder.Callbac
         setContentView(R.layout.activity_video);
 
         mVideo = (Video) getIntent().getSerializableExtra("video");
-        // Example of a call to a native method
-//    TextView tv = (TextView) findViewById(R.id.sample_text);
-//    tv.setText(stringFromJNI());
         SurfaceView sv = (SurfaceView) findViewById(R.id.sv);
         mSurfaceHolder = sv.getHolder();
         mSurfaceHolder.addCallback(this);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                AudioPlayer1.playAudio(mVideo.path);
+            }
+        }).start();
     }
-
-    /**
-     * A native method that is implemented by the 'native-lib' native library,
-     * which is packaged with this application.
-     */
-
-    // Used to load the 'native-lib' library on application startup.
-//    static {
-//        System.loadLibrary("native-lib");
-//    }
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
@@ -55,5 +48,11 @@ public class PlayVideoActivity extends Activity implements SurfaceHolder.Callbac
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AudioPlayer1.stopAudio();
     }
 }
